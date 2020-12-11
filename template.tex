@@ -1,0 +1,217 @@
+\documentclass[
+	hyperref={
+		colorlinks,
+		citecolor=DeepPink4,
+		linkcolor=DarkRed,
+		urlcolor=DarkRed
+	},
+	% uncomment for printing out notes
+	%notes=only                  % Only notes
+	notes=none                   % No notes
+	%notes                       % Show notes as seperate slides
+	%handout                     % Skips pauses
+]{beamer}
+
+\usepackage{pgfpages}
+
+%\pgfpagesuselayout{2 on 1}[a4paper,border shrink=5mm] % For notes printout
+%\setbeameroption{show notes on second screen}         % For presentation
+
+\mode<presentation> {
+	\setbeamertemplate{frametitle}{
+		\begin{centering}
+			\smallskip
+			\insertframetitle
+			\par
+			\smallskip
+		\end{centering}
+	}
+	\setbeamertemplate{footnote}{\hangpara{1em}{1}\makebox[1em][r]{\insertfootnotemark \ }\footnotesize\insertfootnotetext\par}
+
+	% Show numbers for citations
+	\setbeamertemplate{bibliography item}{\insertbiblabel}
+
+	\setbeamertemplate{itemize item}{$\bullet$}
+	\setbeamertemplate{itemize subitem}{$\bullet$}
+	\setbeamertemplate{itemize subsubitem}{$\bullet$}
+	\setbeamertemplate{navigation symbols}{}
+
+	% Define some colors:
+	\definecolor{DarkFern}{HTML}{407428}
+	\definecolor{DarkCharcoal}{HTML}{4D4944}
+	\definecolor{Sepia}{HTML}{F6F6EF}
+	\colorlet{Fern}{DarkFern!85!white}
+	\colorlet{Charcoal}{DarkCharcoal!85!white}
+	\colorlet{LightCharcoal}{Charcoal!50!white}
+	\colorlet{AlertColor}{orange!80!black}
+	\colorlet{DarkRed}{red!70!black}
+	\colorlet{DarkBlue}{blue!70!black}
+	\colorlet{DarkGreen}{green!70!black}
+
+	% Use the colors:
+	\setbeamercolor{title}{fg=DarkRed}
+	\setbeamercolor{frametitle}{fg=DarkRed}
+	\setbeamercolor{normal text}{fg=Charcoal}
+	\setbeamercolor{block title}{fg=black,bg=DarkRed!25!white}
+	\setbeamercolor{block body}{fg=black,bg=DarkRed!25!white}
+	\setbeamercolor{alerted text}{fg=AlertColor}
+	\setbeamercolor{itemize item}{fg=DarkCharcoal}
+	\setbeamercolor{itemize subitem}{fg=Charcoal}
+	\setbeamercolor{itemize subsubitem}{fg=Charcoal}
+	\setbeamercolor{section in toc}{fg=DarkRed}
+	\setbeamercolor{bibliography item}{fg=DarkRed}
+	\setbeamercolor{bibliography entry author}{fg=DarkCharcoal}
+	\setbeamercolor{caption name}{fg=DarkRed}
+}
+
+\usepackage{graphicx}           % Allows including images
+\graphicspath{{images/}}
+
+\usepackage{booktabs}           % Allows the use of \toprule, \midrule and \bottomrule in tables
+\usepackage{hyperref}           % Allows pretty coloring of references
+\usepackage{hanging}            % Makes footnotes properly indented
+\usepackage{changepage}         % Allows for indented paragraphs
+\usepackage{seqsplit}           % Allows for splitting up equations over multiple lines
+\usepackage{tabularx}           % Allows for more flexible tables
+
+\usepackage{fontspec}
+\setmonofont{consolas}
+
+\usepackage{minted}             % Allows for code syntax coloring
+\usemintedstyle{
+	perldoc,                % Don't italicize comments
+	fontsize=\tiny,         % Makes code smaller
+	bgcolor=Sepia           % Gives code background color
+}
+
+\usepackage[many]{tcolorbox}
+\usepackage{tikz}               % Drawings
+\usetikzlibrary{matrix}
+
+\useoutertheme{shadow}
+
+%------------------------------------------------------------------------------
+%	TITLE PAGE
+%------------------------------------------------------------------------------
+
+\title[Short title]{Title \\ \small{Subtitle}}
+% The short title appears at the bottom of every slide, the full title is only
+% on the title page
+
+\author{Author} % Your name
+\institute[LUG @ NC State] % Shortened institute name
+{
+	LUG @ NC State\\ % Your institution for the title page
+}
+%\date{December 10, 2020} % Date, can be changed to a custom date
+
+% Header
+\setbeamercolor{top}{bg=black}
+\setbeamercolor{bottom}{}
+\setbeamertemplate{headline}{
+	\begin{beamercolorbox}[ht=.085\pageheight, wd=\pagewidth]{top}
+	\end{beamercolorbox}
+	\begin{beamercolorbox}[ht=.055\pageheight, wd=\pagewidth]{bottom}
+		\hspace{.1\pagewidth}
+		\includegraphics[height=.13\pageheight]{ncstate-brick-2x2-red-rgb.eps}
+	\end{beamercolorbox}
+	\begin{beamercolorbox}[ht=.01\pageheight, wd=\pagewidth]{bottom}
+	\end{beamercolorbox}
+}
+
+% Footer
+\setbeamertemplate{footline}[text line]{%
+	\parbox[l]{0.2\textwidth}{
+		\insertauthor
+	}
+	\parbox[c]{0.6\textwidth}{
+		\centering
+		\insertshorttitle
+	}
+	\parbox[r]{0.2\textwidth}{
+		\raggedleft
+		\insertframenumber\ / \inserttotalframenumber
+	}
+}
+
+% Numbers figures
+\setbeamertemplate{caption}[numbered]
+
+\begin{document}
+
+{
+	\setbeamertemplate{headline}{}
+	\setbeamertemplate{footline}{}
+	\begin{frame}[noframenumbering]
+		% Print the title page as the first slide
+		\hfill\includegraphics[height=.2\pageheight]{lug-logo.png}\hspace*{\fill}
+		\titlepage
+	\end{frame}
+}
+
+%------------------------------------------------------------------------------
+%	PRESENTATION SLIDES
+%------------------------------------------------------------------------------
+
+%------------------------------------------------
+
+\section{Test}
+\subsection{Test}
+
+\begin{frame}[fragile] % Frames with minted must be fragile
+\frametitle{Test}
+
+\vfill
+
+\begin{itemize}
+	\item Test \cite{lug}
+\end{itemize}
+
+\vfill
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile] % Frames with minted must be fragile
+\frametitle{}
+
+\vfill
+
+\centering
+
+\huge
+Questions, Comments, Concerns?
+
+\vfill
+
+\large
+oit\_hpc@help.ncsu.edu
+
+\vfill
+
+\end{frame}
+
+%------------------------------------------------
+
+{
+	\setbeamertemplate{footline}[default]
+
+	\begin{frame}[noframenumbering] % [allowframebreaks] % Remove first comment for multiple pages of refs
+	\frametitle{References}
+	\footnotesize{
+	\begin{thebibliography}{99} % Beamer does not support BibTeX so references must be inserted manually as below
+		\tiny
+
+		\bibitem{lug} LUG @ NC State \\
+			\url{https://lug.ncsu.edu}
+
+	\end{thebibliography}
+	}
+	\end{frame}
+}
+
+%------------------------------------------------------------------------------
+
+\end{document}
+
