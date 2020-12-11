@@ -3,7 +3,10 @@
 all:
 	lualatex -shell-escape *.tex
 
+CONVERTED_IMAGES = $(wildcard images/*.eps)
+CONVERTED_PDFS = $(CONVERTED_IMAGES:.eps=-eps-converted-to.pdf)
+
 .PHONY: clean
 clean:
-	-rm -r *.log *.aux *.nav *.out *.snm *.vrb *.toc _minted*/ all
-	rm images/*-converted-to.pdf
+	-rm -r *.log *.aux *.nav *.out *.snm *.vrb *.toc _minted*/
+	rm $(CONVERTED_PDFS)
